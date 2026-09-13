@@ -57,9 +57,12 @@ export default function Home() {
       <section className="mx-auto max-w-[1320px] px-5 py-24 lg:px-8 lg:py-32" data-testid="home-founders-story-section">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <h2 className="font-serif text-4xl font-bold tracking-tight text-[#ffbf00] sm:text-5xl lg:text-6xl" data-testid="home-founders-story-title">
-              Founder Story
-            </h2>
+            <div className="flex items-center gap-3">
+              <span className="size-3 rounded-full bg-[#ffbf00] animate-pulse shrink-0" />
+              <h2 className="font-serif text-4xl font-bold tracking-tight text-[#ffbf00] sm:text-5xl lg:text-6xl" data-testid="home-founders-story-title">
+                Founder Story
+              </h2>
+            </div>
             <div className="mt-8 space-y-5 text-base leading-8 text-[#575247] sm:text-lg">
               <p>
                 Every brand starts with a dream. Luminor Media started with ours.
