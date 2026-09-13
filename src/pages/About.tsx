@@ -64,7 +64,7 @@ export default function About() {
           The team, in focus.
         </h2>
         <p className="max-w-md text-sm sm:text-base leading-6 text-[#b9b1a2]">
-          Senior thinking, generous collaboration, and just enough healthy obsession.
+          The Minds Behind The Light
         </p>
       </div>
 
