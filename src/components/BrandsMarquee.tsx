@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, Sparkles, ExternalLink, Play, Pause } from "lucide-react";
+import { X, Sparkles, ExternalLink } from "lucide-react";
 import sakshiTailorLogo from "@/assets/images/sakshi_tailor_logo_1789157413801.jpg";
 import grainesLotusLogo from "@/assets/images/graines_lotus_logo_1789157452714.jpg";
 import ka16RunClubLogo from "@/assets/images/ka16_runclub_logo_1789157473645.jpg";
@@ -91,7 +91,6 @@ export const brandPartners: BrandPartner[] = [
 
 export function BrandsMarquee() {
   const [selectedBrand, setSelectedBrand] = useState<BrandPartner | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
 
   // Triple array to ensure seamless uninterrupted scrolling across ultra-wide viewports
   const marqueeItems = [...brandPartners, ...brandPartners, ...brandPartners];
@@ -108,29 +107,12 @@ export function BrandsMarquee() {
             Brands we work with
           </h2>
         </div>
-
-        <div className="flex items-center gap-3">
-          <span className="hidden md:inline-block font-mono text-xs text-[#8c8474] tracking-wider uppercase">
-            Hover to hold · Click to view
-          </span>
-          <button
-            type="button"
-            onClick={() => setIsPaused(!isPaused)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#e8e1ce] bg-white/80 px-3 py-1.5 text-xs font-mono uppercase tracking-wider text-[#575247] hover:border-[#ffbf00] hover:text-[#1a1814] transition shadow-sm"
-            aria-label={isPaused ? "Resume animation" : "Pause animation"}
-            data-testid="marquee-pause-toggle"
-          >
-            {isPaused ? <Play className="size-3.5 text-[#ffbf00]" /> : <Pause className="size-3.5 text-[#8c8474]" />}
-            <span>{isPaused ? "Play" : "Pause"}</span>
-          </button>
-        </div>
       </div>
 
       {/* Marquee Track Container with Vignette Gradient Edges */}
       <div className="relative w-full overflow-hidden mask-fade-edges">
         <div 
           className="marquee-track py-3 gap-6 sm:gap-8 px-4"
-          style={{ animationPlayState: isPaused ? "paused" : "running" }}
           data-testid="brands-marquee-track"
         >
           {marqueeItems.map((brand, idx) => (
