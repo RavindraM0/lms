@@ -18,11 +18,11 @@ const team = [
   ["Ravindra M.O", "Web Developer", ravindraImg],
   ["Chetas", "Creative Head", chetasImg],
   ["Vishnu Reddy", "Executive Manager", vishnuImg],
-  ["Hardik P", "Co-Founder / Content Strategist", hardikImg],
+  ["Suheart", "Cinematographer", suheartImg],
   ["Gokul", "Graphic Designer", gokulImg],
   ["Sanjana A", "Finance Co-ordinator", sanjanaImg],
   ["Sagar RS", "Technical Advisor", sagarImg],
-  ["Suheart", "Cinematographer", suheartImg],
+  ["Hardik P", "Co Founder / Content Strategist", hardikImg],
 ];
 
 export default function About() {
