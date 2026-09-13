@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Check, Play, Pause } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Eyebrow, PageIntro, PageShell, Testimonial } from "@/components/LuminorSite";
 import { HowWeWorkGraphic } from "@/components/HowWeWorkGraphic";
@@ -27,7 +27,6 @@ const team = [
 
 export default function About() {
   const [revealedTeam, setRevealedTeam] = useState<Record<string, boolean>>({});
-  const [isPaused, setIsPaused] = useState(false);
 
   const toggleReveal = (name: string) => {
     setRevealedTeam((prev) => ({
@@ -64,26 +63,14 @@ export default function About() {
           <Eyebrow>People behind the light</Eyebrow>
           <h2 className="mt-5 font-serif text-4xl tracking-tight sm:text-5xl">The team, in focus.</h2>
         </div>
-        <div className="flex items-center gap-4">
-          <p className="max-w-sm text-sm leading-6 text-[#b9b1a2]">
-            Senior thinking, generous collaboration, and just enough healthy obsession.
-          </p>
-          <button
-            type="button"
-            onClick={() => setIsPaused(!isPaused)}
-            className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-[#b9b1a2] transition hover:border-[#ffbf00] hover:text-[#ffbf00]"
-            aria-label={isPaused ? "Resume animation" : "Pause animation"}
-          >
-            {isPaused ? <Play className="size-3.5 text-[#ffbf00]" /> : <Pause className="size-3.5 text-[#8c8474]" />}
-            <span>{isPaused ? "Play" : "Pause"}</span>
-          </button>
-        </div>
+        <p className="max-w-sm text-sm leading-6 text-[#b9b1a2]">
+          Senior thinking, generous collaboration, and just enough healthy obsession.
+        </p>
       </div>
 
       <div className="relative w-full overflow-hidden mask-fade-edges">
         <div
           className="marquee-track py-6 gap-6 sm:gap-8 px-4"
-          style={{ animationPlayState: isPaused ? "paused" : "running" }}
           data-testid="team-marquee-track"
         >
           {marqueeTeam.map(([name, role, image], idx) => {
