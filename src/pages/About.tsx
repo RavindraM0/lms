@@ -15,11 +15,11 @@ import suheartImg from "@/assets/images/team/suheart.jpg";
 
 const team = [
   ["Preetham A", "Founder", preethamImg],
-  ["Hardik P", "Co Founder / Content Strategist", hardikImg],
+  ["Hardik P", "Co Founder / Content Strategist", suheartImg],
   ["Ravindra M.O", "Web Developer", ravindraImg],
   ["Chetas", "Creative Head", chetasImg],
   ["Vishnu Reddy", "Executive Manager", vishnuImg],
-  ["Suheart", "Cinematographer", suheartImg],
+  ["Suheart", "Cinematographer", hardikImg],
   ["Gokul", "Graphic Designer", gokulImg],
   ["Sanjana A", "Finance Co-ordinator", sanjanaImg],
   ["Sagar RS", "Technical Advisor", sagarImg],
