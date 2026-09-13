@@ -59,11 +59,11 @@ export default function About() {
     </section>
     <section className="bg-[#1a1814] text-[#fffbf2] py-20 lg:py-28 overflow-hidden" data-testid="about-team-section">
       <div className="mx-auto max-w-[1320px] px-5 lg:px-8 mb-12 flex flex-col items-center text-center gap-2">
-        <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#ffbf00]">
-          People behind the light
+        <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#ffbf00] uppercase">
+          PEOPLE BEHIND THE LIGHT
         </h2>
-        <p className="mt-1 font-serif text-xl sm:text-2xl tracking-tight text-[#b9b1a2]">
-          The team, in focus.
+        <p className="mt-1 font-serif text-xl sm:text-2xl tracking-tight text-[#b9b1a2] uppercase">
+          THE TEAM, IN FOCUS.
         </p>
       </div>
 
