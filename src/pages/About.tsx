@@ -113,15 +113,10 @@ export default function About() {
                   />
                 </div>
                 <div className="mt-4 min-h-[52px] w-full text-center">
-                  {isRevealed ? (
+                  {isRevealed && (
                     <div className="animate-in fade-in slide-in-from-top-1 duration-300">
                       <h3 className="font-serif text-base sm:text-lg font-medium text-[#ffbf00] leading-snug">{name}</h3>
                       <p className="mt-0.5 text-xs text-[#b9b1a2] leading-tight">{role}</p>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center gap-1.5 pt-2 text-xs text-[#8c8474] group-hover:text-[#ffbf00]/90 transition-colors">
-                      <span className="inline-block size-1.5 rounded-full bg-[#ffbf00]/60 animate-pulse" />
-                      <span>Click to reveal</span>
                     </div>
                   )}
                 </div>
