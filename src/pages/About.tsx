@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Eyebrow, PageIntro, PageShell, Testimonial } from "@/components/LuminorSite";
@@ -25,6 +26,15 @@ const team = [
 ];
 
 export default function About() {
+  const [revealedTeam, setRevealedTeam] = useState<Record<string, boolean>>({});
+
+  const toggleReveal = (name: string) => {
+    setRevealedTeam((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
+
   return <PageShell><main><PageIntro eyebrow="The studio" title={<>A little more <span className="italic text-[#ffbf00]">light</span> on the way in.</>} description="Luminor is an independent social and digital studio for brands with ambition, taste, and somewhere meaningful to go next." />
     <section className="mx-auto max-w-[1320px] px-5 pb-24 lg:px-8 lg:pb-32" data-testid="about-story-section">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -57,19 +67,48 @@ export default function About() {
           </p>
         </div>
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6">
-          {team.map(([name, role, image]) => (
-            <div key={name} data-testid={`team-card-${name.toLowerCase().replaceAll(" ", "-")}`}>
-              <div className="aspect-[4/5] max-w-[210px] w-full overflow-hidden rounded-2xl border border-white/10 bg-[#24211c]">
-                <img
-                  src={image}
-                  alt={name}
-                  className="size-full object-cover grayscale transition duration-700 hover:scale-105 hover:grayscale-0"
-                />
+          {team.map(([name, role, image]) => {
+            const isRevealed = !!revealedTeam[name];
+            return (
+              <div
+                key={name}
+                data-testid={`team-card-${name.toLowerCase().replaceAll(" ", "-")}`}
+                className="group cursor-pointer select-none"
+                onClick={() => toggleReveal(name)}
+              >
+                <div
+                  className={`aspect-[4/5] max-w-[210px] w-full overflow-hidden rounded-2xl border transition-all duration-300 ${
+                    isRevealed
+                      ? "border-[#ffbf00] ring-2 ring-[#ffbf00]/40 shadow-lg shadow-[#ffbf00]/10 bg-[#24211c]"
+                      : "border-white/10 bg-[#24211c] group-hover:border-white/30"
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={name}
+                    className={`size-full object-cover transition duration-700 ${
+                      isRevealed
+                        ? "grayscale-0 scale-105"
+                        : "grayscale group-hover:scale-105 group-hover:grayscale-[50%]"
+                    }`}
+                  />
+                </div>
+                <div className="mt-3 min-h-[48px] max-w-[210px]">
+                  {isRevealed ? (
+                    <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                      <h3 className="font-serif text-lg sm:text-xl font-medium text-[#ffbf00]">{name}</h3>
+                      <p className="mt-0.5 text-xs text-[#b9b1a2]">{role}</p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1.5 pt-1 text-xs text-[#8c8474] group-hover:text-[#ffbf00]/80 transition-colors">
+                      <span className="inline-block size-1.5 rounded-full bg-[#ffbf00]/60 animate-pulse" />
+                      <span>Click to reveal</span>
+                    </div>
+                  )}
+                </div>
               </div>
-              <h3 className="mt-4 font-serif text-lg sm:text-xl font-medium">{name}</h3>
-              <p className="mt-0.5 text-xs text-[#b9b1a2]">{role}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
