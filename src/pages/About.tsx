@@ -45,7 +45,34 @@ export default function About() {
         </div>
       </div>
     </section>
-    <section className="bg-[#1a1814] text-[#fffbf2]" data-testid="about-team-section"><div className="mx-auto max-w-[1320px] px-5 py-24 lg:px-8 lg:py-32"><div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div><Eyebrow>People behind the light</Eyebrow><h2 className="mt-5 font-serif text-5xl tracking-tight">The team, in focus.</h2></div><p className="max-w-sm text-sm leading-6 text-[#b9b1a2]">Senior thinking, generous collaboration, and just enough healthy obsession.</p></div><div className="mt-12 grid gap-6 md:grid-cols-3">{team.map(([name, role, image]) => <div key={name} data-testid={`team-card-${name.toLowerCase().replaceAll(" ", "-")}`}><div className="aspect-[4/5] overflow-hidden rounded-3xl"><img src={image} alt={name} className="size-full object-cover grayscale transition duration-700 hover:scale-105 hover:grayscale-0" /></div><h3 className="mt-5 font-serif text-2xl">{name}</h3><p className="mt-1 text-sm text-[#b9b1a2]">{role}</p></div>)}</div></div></section>
+    <section className="bg-[#1a1814] text-[#fffbf2]" data-testid="about-team-section">
+      <div className="mx-auto max-w-[1320px] px-5 py-20 lg:px-8 lg:py-28">
+        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <Eyebrow>People behind the light</Eyebrow>
+            <h2 className="mt-5 font-serif text-4xl tracking-tight sm:text-5xl">The team, in focus.</h2>
+          </div>
+          <p className="max-w-sm text-sm leading-6 text-[#b9b1a2]">
+            Senior thinking, generous collaboration, and just enough healthy obsession.
+          </p>
+        </div>
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6">
+          {team.map(([name, role, image]) => (
+            <div key={name} data-testid={`team-card-${name.toLowerCase().replaceAll(" ", "-")}`}>
+              <div className="aspect-[4/5] max-w-[210px] w-full overflow-hidden rounded-2xl border border-white/10 bg-[#24211c]">
+                <img
+                  src={image}
+                  alt={name}
+                  className="size-full object-cover grayscale transition duration-700 hover:scale-105 hover:grayscale-0"
+                />
+              </div>
+              <h3 className="mt-4 font-serif text-lg sm:text-xl font-medium">{name}</h3>
+              <p className="mt-0.5 text-xs text-[#b9b1a2]">{role}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
     <section className="mx-auto max-w-[1320px] px-5 py-24 lg:px-8 lg:py-32" data-testid="about-difference-section">
       <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
