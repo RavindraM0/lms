@@ -77,10 +77,10 @@ export default function About() {
                 onClick={() => toggleReveal(name)}
               >
                 <div
-                  className={`aspect-[4/5] max-w-[210px] w-full overflow-hidden rounded-2xl border transition-all duration-300 ${
+                  className={`aspect-[4/5] max-w-[210px] w-full overflow-hidden rounded-2xl transition-all duration-300 ${
                     isRevealed
-                      ? "border-[#ffbf00] ring-2 ring-[#ffbf00]/40 shadow-lg shadow-[#ffbf00]/10 bg-[#24211c]"
-                      : "border-white/10 bg-[#24211c] group-hover:border-white/30"
+                      ? "ring-2 ring-[#ffbf00] shadow-lg shadow-[#ffbf00]/20"
+                      : ""
                   }`}
                 >
                   <img
