@@ -1,18 +1,142 @@
-import { ArrowRight, Play, TrendingUp } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Eyebrow, MetricStrip, PageIntro, PageShell, Testimonial } from "@/components/LuminorSite";
+import { Eyebrow, MetricStrip, PageIntro, PageShell } from "@/components/LuminorSite";
 
-const cases = [{ category: "Lifestyle", client: "Ritual House", title: "From beautiful product to daily ritual.", result: "+212% saves", image: "https://images.unsplash.com/photo-1586732711591-12c04655338f?auto=format&fit=crop&w=1200&q=85" }, { category: "B2B SaaS", client: "Northstar", title: "Making complex feel immediately clear.", result: "3.8x ROAS", image: "https://images.unsplash.com/photo-1638545818407-ac7a54b544fd?auto=format&fit=crop&w=1200&q=85" }, { category: "Luxury", client: "Morrow", title: "Turning a launch into a point of view.", result: "+480% engagement", image: "https://images.unsplash.com/photo-1647427854253-b92bb40c9330?auto=format&fit=crop&w=1200&q=85" }];
-const filters = ["All", "Lifestyle", "B2B SaaS", "Luxury"];
+const testimonials = [
+  {
+    quote: "Luminor didn't just make us look good — they made us impossible to forget. Our engagement tripled in 60 days.",
+    name: "Ashok N",
+    role: "Founder, Chitradurga Cricket Club",
+    tag: "+312% engagement",
+    dark: true,
+  },
+  {
+    quote: "They understand the fine line between beautiful and effective. Our content finally converts.",
+    name: "Sneha Rao",
+    role: "CMO, Ritual House",
+    tag: "+212% saves",
+    dark: false,
+  },
+  {
+    quote: "Working with Luminor felt like having a creative director, strategist, and editor all in one room. The clarity they brought to our brand was transformative.",
+    name: "Rohan Verma",
+    role: "CEO, Northstar SaaS",
+    tag: "3.8x ROAS",
+    dark: false,
+  },
+  {
+    quote: "Our Instagram went from an afterthought to our best-performing sales channel. That's the Luminor effect.",
+    name: "Priya Nair",
+    role: "Brand Director, Sakshi Tailor",
+    tag: "+480% reach",
+    dark: true,
+  },
+  {
+    quote: "They took our scattered vision and turned it into a story people actually care about.",
+    name: "Karan Shah",
+    role: "Co-founder, Morrow Luxury",
+    tag: "+180% saves",
+    dark: false,
+  },
+  {
+    quote: "The team at Luminor is rare — they think like marketers but create like artists. Best investment we made this year.",
+    name: "Disha Kapoor",
+    role: "Head of Growth, Graines Lotus",
+    tag: "2.4x conversions",
+    dark: false,
+  },
+];
 
 export default function Results() {
-  const [filter, setFilter] = useState("All");
-  const filtered = filter === "All" ? cases : cases.filter((item) => item.category === filter);
-  return <PageShell><main><PageIntro eyebrow="Selected outcomes" title={<>The work speaks <span className="italic text-[#ffbf00]">louder.</span></>} description="A few ways we’ve helped brands become more themselves — and more valuable because of it." />
-    <section className="mx-auto max-w-[1320px] px-5 pb-24 lg:px-8 lg:pb-32" data-testid="results-metrics-section"><MetricStrip /></section>
-    <section className="border-y border-[#e8e1ce] bg-[#f7f1e3]" data-testid="results-case-studies-section"><div className="mx-auto max-w-[1320px] px-5 py-24 lg:px-8 lg:py-32"><div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div><Eyebrow>Selected work</Eyebrow><h2 className="mt-5 font-serif text-5xl tracking-tight">A different kind of before + after.</h2></div><div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter case studies">{filters.map((item) => <button type="button" key={item} onClick={() => setFilter(item)} className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${filter === item ? "border-[#1a1814] bg-[#1a1814] text-[#fffbf2]" : "border-[#e8e1ce] hover:border-[#ffbf00]"}`} data-testid={`results-filter-${item.toLowerCase().replaceAll(" ", "-")}-button`}>{item}</button>)}</div></div><div className="mt-12 grid gap-6 md:grid-cols-2">{filtered.map((item, index) => <article key={item.client} className={`group overflow-hidden rounded-3xl border border-[#e8e1ce] bg-[#fffbf2] ${index === 0 ? "md:col-span-2 md:grid md:grid-cols-[1.05fr_0.95fr]" : ""}`} data-testid={`case-study-${item.client.toLowerCase().replaceAll(" ", "-")}`}><div className="relative min-h-72 overflow-hidden"><img src={item.image} alt={item.client} className="absolute inset-0 size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-[#1a1814]/60 to-transparent" /><span className="absolute bottom-5 left-5 rounded-full bg-[#ffbf00] px-3 py-1 text-xs font-semibold text-[#1a1814]">{item.result}</span></div><div className="flex flex-col justify-between p-7 sm:p-9"><div><p className="eyebrow">{item.category} / {item.client}</p><h3 className="mt-5 font-serif text-4xl leading-tight tracking-tight">{item.title}</h3></div><Link to="/contact" className="mt-10 inline-flex items-center text-sm font-semibold" data-testid={`case-study-${item.client.toLowerCase().replaceAll(" ", "-")}-link`}>Read the story <ArrowRight className="ml-2 size-4 transition group-hover:translate-x-1" /></Link></div></article>)}</div></div></section>
-    <section className="mx-auto max-w-[1320px] px-5 py-24 lg:px-8 lg:py-32" data-testid="results-testimonial-section"><div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-center"><div className="relative aspect-square max-w-sm overflow-hidden rounded-full bg-[#fff3cc]"><div className="absolute inset-8 rounded-full border border-[#ffbf00]/40" /><div className="absolute inset-16 rounded-full border border-[#ffbf00]/40" /><div className="absolute inset-0 flex items-center justify-center"><TrendingUp className="size-20 text-[#ffbf00]" /></div></div><div><Eyebrow>Client voice</Eyebrow><Testimonial quote="Luminor gave us a way to be both more recognizable and more effective. The work changed how our team thinks." name="Maya Patel" role="Chief Brand Officer, Morrow" /><div className="mt-8 flex items-center gap-3 text-sm text-[#8c8474]"><Play className="size-4 fill-[#ffbf00] text-[#ffbf00]" /> Verified partner testimonial</div></div></div></section>
-    <section className="bg-[#1a1814] text-[#fffbf2]" data-testid="results-bottom-cta"><div className="mx-auto flex max-w-[1320px] flex-col gap-8 px-5 py-20 sm:flex-row sm:items-end sm:justify-between lg:px-8 lg:py-28"><h2 className="max-w-xl font-serif text-5xl tracking-tight sm:text-6xl">What would your before + after look like?</h2><Link to="/contact" className="inline-flex shrink-0 items-center rounded-full bg-[#ffbf00] px-6 py-3.5 text-sm font-semibold text-[#1a1814]" data-testid="results-contact-link">Find out <ArrowRight className="ml-2 size-4" /></Link></div></section>
-  </main></PageShell>;
+  return (
+    <PageShell>
+      <main>
+        <PageIntro
+          eyebrow="Selected outcomes"
+          title={<>The work speaks <span className="italic text-[#ffbf00]">louder.</span></>}
+          description="A few ways we've helped brands become more themselves — and more valuable because of it."
+        />
+
+        {/* Metrics */}
+        <section className="mx-auto max-w-[1320px] px-5 pb-24 lg:px-8 lg:pb-32" data-testid="results-metrics-section">
+          <MetricStrip />
+        </section>
+
+        {/* Testimonials Grid */}
+        <section className="border-y border-[#e8e1ce] bg-[#f7f1e3] py-24 lg:py-32" data-testid="results-testimonials-section">
+          <div className="mx-auto max-w-[1320px] px-5 lg:px-8">
+
+            {/* Header */}
+            <div className="mb-16 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <Eyebrow>Client voices</Eyebrow>
+                <h2 className="mt-4 font-serif text-5xl tracking-tight">
+                  What our clients <span className="italic text-[#ffbf00]">say.</span>
+                </h2>
+              </div>
+              <p className="max-w-sm text-sm leading-7 text-[#575247]">
+                Real words from real brands we've had the privilege of building with.
+              </p>
+            </div>
+
+            {/* Masonry-style grid */}
+            <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
+              {testimonials.map((t, i) => (
+                <div
+                  key={i}
+                  className={`mb-6 break-inside-avoid rounded-3xl border p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                    t.dark
+                      ? "border-transparent bg-[#1a1814] text-[#fffbf2]"
+                      : "border-[#e8e1ce] bg-[#fffbf2] text-[#1a1814]"
+                  }`}
+                  data-testid={`testimonial-card-${i}`}
+                >
+                  {/* Quote icon */}
+                  <Quote
+                    className={`mb-5 size-6 ${t.dark ? "text-[#ffbf00]" : "text-[#ffbf00]"}`}
+                    fill="currentColor"
+                  />
+
+                  {/* Quote text */}
+                  <p className={`font-serif text-xl leading-relaxed tracking-tight sm:text-2xl ${t.dark ? "text-[#fffbf2]" : "text-[#1a1814]"}`}>
+                    "{t.quote}"
+                  </p>
+
+                  {/* Footer */}
+                  <div className="mt-8 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="size-2 shrink-0 rounded-full bg-[#ffbf00]" />
+                      <div>
+                        <p className="text-sm font-semibold">{t.name}</p>
+                        <p className={`text-xs ${t.dark ? "text-[#8c8474]" : "text-[#8c8474]"}`}>{t.role}</p>
+                      </div>
+                    </div>
+                    <span className="rounded-full bg-[#ffbf00] px-3 py-1 font-mono text-[10px] font-semibold text-[#1a1814]">
+                      {t.tag}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="bg-[#1a1814] text-[#fffbf2]" data-testid="results-bottom-cta">
+          <div className="mx-auto flex max-w-[1320px] flex-col gap-8 px-5 py-20 sm:flex-row sm:items-end sm:justify-between lg:px-8 lg:py-28">
+            <h2 className="max-w-xl font-serif text-5xl tracking-tight sm:text-6xl">
+              What would your before + after look like?
+            </h2>
+            <Link
+              to="/contact"
+              className="inline-flex shrink-0 items-center rounded-full bg-[#ffbf00] px-6 py-3.5 text-sm font-semibold text-[#1a1814] transition hover:-translate-y-1 hover:bg-[#e5ab00]"
+              data-testid="results-contact-link"
+            >
+              Find out <ArrowRight className="ml-2 size-4" />
+            </Link>
+          </div>
+        </section>
+      </main>
+    </PageShell>
+  );
 }

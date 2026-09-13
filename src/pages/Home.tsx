@@ -2,7 +2,7 @@ import { ArrowDownRight, ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { OrbCanvas, PageShell, ServiceCard, Eyebrow, MetricStrip, serviceCards } from "@/components/LuminorSite";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
-import founderImage from "@/assets/images/preetham_founder_1789238666660.jpg";
+import founderImage from "@/assets/images/preetham_founder_new.png";
 
 const studioImage = "https://images.unsplash.com/photo-1638545818407-ac7a54b544fd?auto=format&fit=crop&w=1200&q=85";
 
@@ -60,7 +60,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <span className="size-3 rounded-full bg-[#ffbf00] animate-pulse shrink-0" />
               <h2 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl" data-testid="home-founders-story-title">
-                <span className="text-[#ffbf00]">Founder</span> <span className="text-[#1a1814]">Story</span>
+                <span className="text-[#1a1814]">Founder</span> <span className="text-[#ffbf00]">Story</span>
               </h2>
             </div>
             <div className="mt-8 space-y-5 text-base leading-8 text-[#575247] sm:text-lg">
