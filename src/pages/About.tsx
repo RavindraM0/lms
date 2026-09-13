@@ -77,10 +77,10 @@ export default function About() {
                 onClick={() => toggleReveal(name)}
               >
                 <div
-                  className={`aspect-[4/5] max-w-[210px] w-full overflow-hidden rounded-2xl transition-all duration-300 ${
+                  className={`aspect-square max-w-[190px] w-full mx-auto overflow-hidden rounded-full transition-all duration-300 ${
                     isRevealed
-                      ? "ring-2 ring-[#ffbf00] shadow-lg shadow-[#ffbf00]/20"
-                      : ""
+                      ? "ring-4 ring-[#ffbf00] shadow-xl shadow-[#ffbf00]/25 scale-105"
+                      : "group-hover:scale-105"
                   }`}
                 >
                   <img
@@ -88,19 +88,19 @@ export default function About() {
                     alt={name}
                     className={`size-full object-cover transition duration-700 ${
                       isRevealed
-                        ? "grayscale-0 scale-105"
-                        : "grayscale group-hover:scale-105 group-hover:grayscale-[50%]"
+                        ? "grayscale-0"
+                        : "grayscale group-hover:grayscale-[30%]"
                     }`}
                   />
                 </div>
-                <div className="mt-3 min-h-[48px] max-w-[210px]">
+                <div className="mt-3.5 min-h-[48px] max-w-[190px] mx-auto text-center">
                   {isRevealed ? (
                     <div className="animate-in fade-in slide-in-from-top-1 duration-300">
-                      <h3 className="font-serif text-lg sm:text-xl font-medium text-[#ffbf00]">{name}</h3>
-                      <p className="mt-0.5 text-xs text-[#b9b1a2]">{role}</p>
+                      <h3 className="font-serif text-base sm:text-lg font-medium text-[#ffbf00] leading-snug">{name}</h3>
+                      <p className="mt-0.5 text-xs text-[#b9b1a2] leading-tight">{role}</p>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-1.5 pt-1 text-xs text-[#8c8474] group-hover:text-[#ffbf00]/80 transition-colors">
+                    <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-[#8c8474] group-hover:text-[#ffbf00]/80 transition-colors">
                       <span className="inline-block size-1.5 rounded-full bg-[#ffbf00]/60 animate-pulse" />
                       <span>Click to reveal</span>
                     </div>
