@@ -103,7 +103,7 @@ export default function About() {
                   {isRevealed && (
                     <div className="animate-in fade-in slide-in-from-top-1 duration-300">
                       <h3 className="font-serif text-base sm:text-lg font-medium text-[#ffbf00] leading-snug">{name}</h3>
-                      <p className="mt-0.5 text-xs text-[#b9b1a2] leading-tight">{role}</p>
+                      <p className="mt-1 text-xs sm:text-sm text-white font-medium leading-tight">{role}</p>
                     </div>
                   )}
                 </div>
