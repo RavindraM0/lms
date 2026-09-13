@@ -59,8 +59,8 @@ export default function Home() {
           <div>
             <div className="flex items-center gap-3">
               <span className="size-3 rounded-full bg-[#ffbf00] animate-pulse shrink-0" />
-              <h2 className="font-serif text-4xl font-bold tracking-tight text-[#ffbf00] sm:text-5xl lg:text-6xl" data-testid="home-founders-story-title">
-                Founder Story
+              <h2 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl" data-testid="home-founders-story-title">
+                <span className="text-[#ffbf00]">Founder</span> <span className="text-[#1a1814]">Story</span>
               </h2>
             </div>
             <div className="mt-8 space-y-5 text-base leading-8 text-[#575247] sm:text-lg">
