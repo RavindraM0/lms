@@ -58,13 +58,12 @@ export default function About() {
       </div>
     </section>
     <section className="bg-[#1a1814] text-[#fffbf2] py-20 lg:py-28 overflow-hidden" data-testid="about-team-section">
-      <div className="mx-auto max-w-[1320px] px-5 lg:px-8 mb-12 flex flex-col items-center text-center gap-4">
-        <Eyebrow>People behind the light</Eyebrow>
-        <h2 className="mt-2 font-serif text-4xl tracking-tight sm:text-5xl lg:text-6xl">
-          The team, in focus.
+      <div className="mx-auto max-w-[1320px] px-5 lg:px-8 mb-12 flex flex-col items-center text-center gap-2">
+        <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#ffbf00]">
+          People behind the light
         </h2>
-        <p className="max-w-md text-sm sm:text-base leading-6 text-[#b9b1a2]">
-          The Minds Behind The Light
+        <p className="mt-1 font-serif text-xl sm:text-2xl tracking-tight text-[#b9b1a2]">
+          The team, in focus.
         </p>
       </div>
 
