@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Play, Pause } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Eyebrow, PageIntro, PageShell, Testimonial } from "@/components/LuminorSite";
 import { HowWeWorkGraphic } from "@/components/HowWeWorkGraphic";
@@ -27,6 +27,7 @@ const team = [
 
 export default function About() {
   const [revealedTeam, setRevealedTeam] = useState<Record<string, boolean>>({});
+  const [isPaused, setIsPaused] = useState(false);
 
   const toggleReveal = (name: string) => {
     setRevealedTeam((prev) => ({
@@ -34,6 +35,8 @@ export default function About() {
       [name]: !prev[name],
     }));
   };
+
+  const marqueeTeam = [...team, ...team];
 
   return <PageShell><main><PageIntro eyebrow="The studio" title={<>A little more <span className="italic text-[#ffbf00]">light</span> on the way in.</>} description="Luminor is an independent social and digital studio for brands with ambition, taste, and somewhere meaningful to go next." />
     <section className="mx-auto max-w-[1320px] px-5 pb-24 lg:px-8 lg:pb-32" data-testid="about-story-section">
@@ -55,29 +58,45 @@ export default function About() {
         </div>
       </div>
     </section>
-    <section className="bg-[#1a1814] text-[#fffbf2]" data-testid="about-team-section">
-      <div className="mx-auto max-w-[1320px] px-5 py-20 lg:px-8 lg:py-28">
-        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <div>
-            <Eyebrow>People behind the light</Eyebrow>
-            <h2 className="mt-5 font-serif text-4xl tracking-tight sm:text-5xl">The team, in focus.</h2>
-          </div>
+    <section className="bg-[#1a1814] text-[#fffbf2] py-20 lg:py-28 overflow-hidden" data-testid="about-team-section">
+      <div className="mx-auto max-w-[1320px] px-5 lg:px-8 mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+        <div>
+          <Eyebrow>People behind the light</Eyebrow>
+          <h2 className="mt-5 font-serif text-4xl tracking-tight sm:text-5xl">The team, in focus.</h2>
+        </div>
+        <div className="flex items-center gap-4">
           <p className="max-w-sm text-sm leading-6 text-[#b9b1a2]">
             Senior thinking, generous collaboration, and just enough healthy obsession.
           </p>
+          <button
+            type="button"
+            onClick={() => setIsPaused(!isPaused)}
+            className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-[#b9b1a2] transition hover:border-[#ffbf00] hover:text-[#ffbf00]"
+            aria-label={isPaused ? "Resume animation" : "Pause animation"}
+          >
+            {isPaused ? <Play className="size-3.5 text-[#ffbf00]" /> : <Pause className="size-3.5 text-[#8c8474]" />}
+            <span>{isPaused ? "Play" : "Pause"}</span>
+          </button>
         </div>
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6">
-          {team.map(([name, role, image]) => {
+      </div>
+
+      <div className="relative w-full overflow-hidden mask-fade-edges">
+        <div
+          className="marquee-track py-6 gap-6 sm:gap-8 px-4"
+          style={{ animationPlayState: isPaused ? "paused" : "running" }}
+          data-testid="team-marquee-track"
+        >
+          {marqueeTeam.map(([name, role, image], idx) => {
             const isRevealed = !!revealedTeam[name];
             return (
               <div
-                key={name}
-                data-testid={`team-card-${name.toLowerCase().replaceAll(" ", "-")}`}
-                className="group cursor-pointer select-none"
+                key={`${name}-${idx}`}
+                data-testid={`team-card-${name.toLowerCase().replaceAll(" ", "-")}-${idx}`}
+                className="group relative flex flex-col items-center shrink-0 cursor-pointer select-none rounded-3xl border border-white/10 bg-[#24211c]/90 p-5 sm:p-6 w-[200px] sm:w-[220px] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#ffbf00]/50 hover:bg-[#24211c] hover:shadow-[0_16px_36px_rgba(255,191,0,0.15)]"
                 onClick={() => toggleReveal(name)}
               >
                 <div
-                  className={`aspect-square max-w-[190px] w-full mx-auto overflow-hidden rounded-full transition-all duration-300 ${
+                  className={`aspect-square w-32 sm:w-36 overflow-hidden rounded-full transition-all duration-300 ${
                     isRevealed
                       ? "ring-4 ring-[#ffbf00] shadow-xl shadow-[#ffbf00]/25 scale-105"
                       : "group-hover:scale-105"
@@ -93,14 +112,14 @@ export default function About() {
                     }`}
                   />
                 </div>
-                <div className="mt-3.5 min-h-[48px] max-w-[190px] mx-auto text-center">
+                <div className="mt-4 min-h-[52px] w-full text-center">
                   {isRevealed ? (
                     <div className="animate-in fade-in slide-in-from-top-1 duration-300">
                       <h3 className="font-serif text-base sm:text-lg font-medium text-[#ffbf00] leading-snug">{name}</h3>
                       <p className="mt-0.5 text-xs text-[#b9b1a2] leading-tight">{role}</p>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-[#8c8474] group-hover:text-[#ffbf00]/80 transition-colors">
+                    <div className="flex items-center justify-center gap-1.5 pt-2 text-xs text-[#8c8474] group-hover:text-[#ffbf00]/90 transition-colors">
                       <span className="inline-block size-1.5 rounded-full bg-[#ffbf00]/60 animate-pulse" />
                       <span>Click to reveal</span>
                     </div>
