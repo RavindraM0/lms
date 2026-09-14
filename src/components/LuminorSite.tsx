@@ -13,7 +13,6 @@ import {
   Instagram,
   Layers3,
   Linkedin,
-  Menu,
   MoveUpRight,
   Palette,
   Play,
@@ -21,7 +20,6 @@ import {
   Sparkles,
   Target,
   Video,
-  X,
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { apiPost } from "@/lib/api";
@@ -43,49 +41,47 @@ const navItems = [
   ["Services", "/services"],
   ["Results", "/results"],
   ["Insights", "/insights"],
+  ["FAQ", "/faq"],
 ] as const;
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-[#e8e1ce]/80 bg-[#fffbf2]/85 backdrop-blur-xl" data-testid="site-header">
-      <div className="mx-auto flex max-w-[1320px] items-center justify-between px-5 py-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-3" data-testid="nav-logo-link" onClick={() => setOpen(false)}>
-          <img src={logoUrl} alt="Luminor Media" className="h-10 w-auto object-contain mix-blend-multiply" />
+      <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
+        <Link to="/" className="flex shrink-0 items-center gap-2" data-testid="nav-logo-link">
+          <img src={logoUrl} alt="Luminor Media" className="h-8 w-auto sm:h-9 md:h-10 object-contain mix-blend-multiply" />
         </Link>
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation" data-testid="desktop-navigation">
+        <nav
+          className="flex items-center gap-3 sm:gap-6 md:gap-8 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden py-2"
+          aria-label="Main navigation"
+          data-testid="desktop-navigation"
+        >
           {navItems.map(([label, path]) => (
             <NavLink
               key={path}
               to={path}
-              className={({ isActive }) => cn("nav-link", isActive && "nav-link-active")}
+              className={({ isActive }) =>
+                cn("nav-link whitespace-nowrap text-xs sm:text-sm md:text-[0.84rem]", isActive && "nav-link-active")
+              }
               data-testid={`nav-${label.toLowerCase()}-link`}
             >
               {label}
             </NavLink>
           ))}
         </nav>
-        <div className="hidden items-center gap-5 md:flex">
-          <NavLink to="/faq" className="nav-link" data-testid="nav-faq-link">FAQ</NavLink>
-          <Link to="/contact" className={cn(buttonVariants({ size: "sm" }), "rounded-full bg-[#ffbf00] px-5 text-[#1a1814] shadow-[0_8px_20px_rgba(255,191,0,0.18)] hover:bg-[#e5ab00]")} data-testid="header-consultation-link">
+        <div className="hidden items-center gap-5 md:flex shrink-0">
+          <Link
+            to="/contact"
+            className={cn(
+              buttonVariants({ size: "sm" }),
+              "rounded-full bg-[#ffbf00] px-5 text-[#1a1814] shadow-[0_8px_20px_rgba(255,191,0,0.18)] hover:bg-[#e5ab00]"
+            )}
+            data-testid="header-consultation-link"
+          >
             Start a conversation <ArrowRight className="ml-2 size-4" />
           </Link>
         </div>
-        <button type="button" className="rounded-full border border-[#e8e1ce] p-2 md:hidden" onClick={() => setOpen((value) => !value)} aria-label={open ? "Close navigation" : "Open navigation"} data-testid="mobile-navigation-toggle">
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
       </div>
-      {open && (
-        <div className="border-t border-[#e8e1ce] bg-[#fffbf2] px-5 py-5 md:hidden" data-testid="mobile-navigation-menu">
-          <div className="flex flex-col gap-4">
-            {navItems.map(([label, path]) => (
-              <NavLink key={path} to={path} onClick={() => setOpen(false)} className="text-lg font-medium" data-testid={`mobile-nav-${label.toLowerCase()}-link`}>{label}</NavLink>
-            ))}
-            <NavLink to="/faq" onClick={() => setOpen(false)} className="text-lg font-medium" data-testid="mobile-nav-faq-link">FAQ</NavLink>
-            <Link to="/contact" onClick={() => setOpen(false)} className="mt-2 inline-flex w-fit rounded-full bg-[#ffbf00] px-5 py-3 text-sm font-semibold" data-testid="mobile-consultation-link">Book a consultation <ArrowRight className="ml-2 size-4" /></Link>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
